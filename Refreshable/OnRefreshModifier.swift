@@ -57,10 +57,29 @@ struct OnListRefreshModifier: ViewModifier {
 	}
 }
 
+struct OnScrollRefreshModifier: ViewModifier {
+    
+    let onValueChanged: UIScrollView.ValueChangedAction
+    
+    func body(content: Content) -> some View {
+        content
+            .introspectScrollView { scrollView in
+                scrollView.onRefresh(onValueChanged)
+            }
+    }
+}
+
 
 public extension View {
 	
 	func onRefresh(onValueChanged: @escaping UIScrollView.ValueChangedAction) -> some View {
 		self.modifier(OnListRefreshModifier(onValueChanged: onValueChanged))
 	}
+    
+}
+
+public extension ScrollView {
+    func onRefresh(onValueChanged: @escaping UIScrollView.ValueChangedAction) -> some View {
+        self.modifier(OnScrollRefreshModifier(onValueChanged: onValueChanged))
+    }
 }

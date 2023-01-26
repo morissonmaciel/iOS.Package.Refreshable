@@ -54,6 +54,10 @@ struct OnListRefreshModifier: ViewModifier {
 			.introspectTableView { tableView in
 				tableView.onRefresh(onValueChanged)
 			}
+            .introspect(selector: TargetViewSelector.ancestorOrSiblingContaining) { (collectionView: UICollectionView) in
+                collectionView.onRefresh(onValueChanged)
+            }
+
 	}
 }
 

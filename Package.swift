@@ -18,7 +18,7 @@ let package = Package(
 		.package(
 			name: "Introspect",
 			url: "https://github.com/siteline/SwiftUI-Introspect.git",
-			.branch("master")
+			.exact("0.1.4")
 		)
     ],
     targets: [
